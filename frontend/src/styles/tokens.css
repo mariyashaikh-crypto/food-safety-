@@ -1,0 +1,107 @@
+:root {
+  /* ---- Neutral scale: warm stone / taupe (light field) ---- */
+  --gray-50: #faf6ef;
+  --gray-100: #f3eee5;
+  --gray-200: #e7dfd2;
+  --gray-300: #d6cbb9;
+  --gray-400: #b7a892;
+  --gray-500: #9a8a75;
+  --gray-600: #7c6d5c;
+  --gray-700: #635647;
+  --gray-800: #4d4236;
+  --gray-850: #3d342b;
+  --gray-900: #2e2720;
+  --gray-950: #231d17;
+
+  /* ---- Surfaces (layered warm stone) ---- */
+  --bg: #f3ede3;
+  --bg-subtle: #efe8dc;
+  --surface: #faf6ee;
+  --surface-2: #f5efe5;
+  --surface-3: #ece3d5;
+  --surface-sunken: #ece4d6;
+
+  /* ---- Ink / text ---- */
+  --ink: #3b3025;
+  --ink-2: #6a5d4d;
+  --ink-3: #7d6f5e;
+  --ink-inverse: #fff8ef;
+
+  /* ---- Borders ---- */
+  --border: #e3d8c6;
+  --border-strong: #ccbda5;
+  --border-faint: #efe7d8;
+
+  /* ---- Accent (terracotta / burnt orange) ---- */
+  --accent: #b4572f;
+  --accent-hover: #9d4923;
+  --accent-soft: #f4e7da;
+  --accent-ink: #7a4122;
+
+  /* ---- Top command bar (deep warm brown header) ---- */
+  --topbar-bg: #704c33;
+  --topbar-ink: #f7efdf;
+  --topbar-ink-2: #e6d3ba;
+  --topbar-ink-3: #c9ae8c;
+  --topbar-hover: rgba(255, 242, 224, 0.09);
+  --topbar-active: rgba(199, 116, 70, 0.45);
+  --topbar-hairline: #c8764b;
+
+  /* ---- Semantic - restrained, tuned for light --------- */
+  /* Critical / urgent -> muted terracotta-red             */
+  --red: #b14a36;
+  --red-deep: #96392a;
+  --red-bg: #f7e7e1;
+  --red-line: #e5c3b8;
+  --red-ink: #8a3a28;
+
+  /* Medium -> ochre / mustard                             */
+  --amber: #b7872f;
+  --amber-deep: #97701f;
+  --amber-bg: #f8eed6;
+  --amber-line: #e4d3a8;
+  --amber-ink: #86621a;
+
+  /* Low / resolved -> muted olive                         */
+  --green: #728a3f;
+  --green-deep: #5c7330;
+  --green-bg: #eef1db;
+  --green-line: #d3dcb0;
+  --green-ink: #53682a;
+
+  /* Info / ML signal -> muted warm slate                  */
+  --blue: #5f7a8c;
+  --blue-deep: #4c6373;
+  --blue-bg: #e9f0f2;
+  --blue-line: #c9d8dd;
+  --blue-ink: #40596b;
+
+  /* Secondary signal -> muted mauve (subtle only)         */
+  --violet: #7f6d78;
+  --violet-deep: #685560;
+  --violet-bg: #f1ebee;
+  --violet-line: #ddcfd6;
+  --violet-ink: #5b4752;
+
+  /* ---- Shadows (warm, subtle) ---- */
+  --shadow-xs: 0 1px 2px rgba(61, 47, 33, 0.08);
+  --shadow-sm: 0 1px 3px rgba(61, 47, 33, 0.1), 0 1px 2px rgba(61, 47, 33, 0.06);
+  --shadow-md: 0 4px 14px rgba(61, 47, 33, 0.12), 0 2px 4px rgba(61, 47, 33, 0.07);
+  --shadow-lg: 0 14px 34px rgba(61, 47, 33, 0.16), 0 4px 10px rgba(61, 47, 33, 0.08);
+
+  /* ---- Radii ---- */
+  --radius-sm: 5px;
+  --radius: 9px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ---- Type ---- */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* ---- Layout ---- */
+  --topbar-h: 62px;
+  --content-max: 1400px;
+
+  --transition: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,0 +1,61 @@
+FRONTEND TECH STACK RULES — FOOD SAFETY INSPECTION SYSTEM
+
+PRIMARY RULE Use the existing frontend stack already present in the
+project. Do not replace the framework unless absolutely necessary.
+
+EXPECTED STACK - React-based frontend if that is what the current
+project already uses. - Existing package manager and build tool. -
+Existing CSS approach/component library should be reused where
+practical. - JavaScript/JSX or TypeScript/TSX according to the existing
+project.
+
+UI - Component-based architecture. - Reusable layout, card, table,
+badge, modal/drawer, form, loading, and error components. - Use a
+consistent icon library only if already installed; otherwise keep icons
+minimal.
+
+API INTEGRATION - Use the existing backend API. - Centralize frontend
+API calls in a service/module. - Send the existing authentication token
+correctly. - Handle 401/403 responses without changing backend
+authentication. - Respect existing API response structures. - Do not
+hardcode the sample establishment data into production UI.
+
+DATA The backend already supports data related to: - Establishments -
+Inspections - Violations - Corrective actions - Evidence uploads -
+Re-inspections - Risk scoring - ML predictions - Smart inspection
+decisions - Grounded risk explanations
+
+KNOWN EXAMPLE DATA SHAPE Establishment details can include: id, name,
+type, address, region, status, operating_status, current_risk_score,
+current_risk_level, last_inspection_date.
+
+Risk/decision information can include: current_risk.score,
+current_risk.level, ml_prediction.probability, ml_prediction.risk_level,
+priority.score, priority.level, recommendation, factors, reasons.
+
+Violation information can include: id, inspection_id, category,
+severity, description, status, evidence, corrective_action_required,
+corrective_actions, reinspections.
+
+INSPECTION HISTORY CAN INCLUDE id, establishment_id,
+inspection_date/status, inspector_name, notes, risk_score.
+
+FRONTEND SECURITY - Never expose secrets. - Never put backend
+credentials into client-side source. - Store authentication state using
+the project’s existing mechanism. - Do not alter JWT
+generation/validation logic.
+
+PERFORMANCE - Avoid unnecessary API calls. - Use loading states. - Use
+pagination/filtering if supported by existing APIs. - Avoid rendering
+huge datasets unnecessarily. - Keep charts lightweight.
+
+RESPONSIVE BEHAVIOR - Desktop: full dashboard/sidebar/table
+experience. - Tablet: adaptive grids. - Mobile: stacked cards and
+horizontally scrollable tables where needed.
+
+CODE QUALITY - Reuse components. - Keep pages focused. - Keep API logic
+out of presentation components when possible. - Use clear naming. -
+Remove unused imports and dead code. - Do not introduce unnecessary
+dependencies.
+
+MOST IMPORTANT: FRONTEND ONLY. BACKEND IS OFF LIMITS.

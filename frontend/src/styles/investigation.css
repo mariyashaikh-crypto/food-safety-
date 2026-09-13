@@ -1,0 +1,654 @@
+/* ============================================================
+   INVESTIGATION / COMMAND CENTER
+   Shared structural styles for the redesigned pages.
+   ============================================================ */
+
+/* ---------- Page kicker / eyebrow ---------- */
+.page-kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red-ink);
+  margin-bottom: 5px;
+}
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.page-title {
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+.page-sub {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 3px;
+  max-width: 640px;
+}
+
+/* ---------- Risk readout (dossier / command) ---------- */
+.risk-readout {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.risk-cell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  min-width: 0;
+}
+.risk-cell--red { border-top-color: var(--red); }
+.risk-cell--amber { border-top-color: var(--amber); }
+.risk-cell--green { border-top-color: var(--green); }
+.risk-cell--blue { border-top-color: var(--blue); }
+.risk-cell-label {
+  font-size: 10px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-3);
+}
+.risk-cell-value {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.risk-cell-value .sub {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 550;
+  color: var(--ink-3);
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+
+/* ---------- Recommendation / priority pills ---------- */
+.rec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--red-line);
+  background: var(--red-bg);
+  color: var(--red-ink);
+}
+.rec-pill--amber {
+  border-color: var(--amber-line);
+  background: var(--amber-bg);
+  color: var(--amber-ink);
+}
+.rec-pill--green {
+  border-color: var(--green-line);
+  background: var(--green-bg);
+  color: var(--green-ink);
+}
+.rec-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Investigation section ---------- */
+.inv-section {
+  margin-top: 20px;
+}
+.inv-section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.inv-index {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.inv-head-text {
+  flex: 1;
+  min-width: 0;
+}
+.inv-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.inv-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.inv-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- Evidence chain ---------- */
+.chain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chain-arrow .ico {
+  width: 13px;
+  height: 13px;
+  color: var(--ink-3);
+}
+.chain-step {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.chain-step--ok {
+  border-color: var(--green-line);
+  background: var(--green-bg);
+  color: var(--green-ink);
+}
+.chain-step--warn {
+  border-color: var(--amber-line);
+  background: var(--amber-bg);
+  color: var(--amber-ink);
+}
+.chain-step--bad {
+  border-color: var(--red-line);
+  background: var(--red-bg);
+  color: var(--red-ink);
+}
+
+/* ---------- Evidence assets ---------- */
+.ev-thumb {
+  display: inline-flex;
+  width: 88px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--surface-2);
+  flex: none;
+  transition: border-color var(--transition);
+}
+.ev-thumb:hover {
+  border-color: var(--accent);
+}
+.ev-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ev-thumb--sm {
+  width: 56px;
+  height: 44px;
+}
+.ev-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color var(--transition), color var(--transition);
+}
+.ev-file .ico {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-3);
+}
+.ev-file:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.no-evidence {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+/* ---------- Dossier detail extensions ---------- */
+.dossier-readout {
+  margin-top: 18px;
+}
+.risk-cell--wide {
+  grid-column: span 2;
+}
+
+/* ---------- Factor bars ---------- */
+.factor-bar {
+  display: grid;
+  grid-template-columns: 150px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+}
+.fb-label {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fb-value {
+  font-size: 12.5px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  text-align: right;
+}
+
+/* ---------- Dossier header ---------- */
+.dossier-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.dossier-flag .ico {
+  width: 14px;
+  height: 14px;
+}
+.dossier-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.dossier-title {
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.dossier-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.dossier-meta .meta-seg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dossier-meta .ico {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-3);
+}
+.dossier-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Insight / intelligence panel ---------- */
+.intel-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.intel-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border-faint);
+  background: var(--surface-2);
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+.intel-bar .ico {
+  width: 14px;
+  height: 14px;
+  color: var(--violet);
+}
+.intel-body {
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  white-space: pre-wrap;
+}
+
+/* ---------- Severity distribution ---------- */
+.sev-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sev-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+.sev-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+.sev-count {
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Investigation records (inspection / violation / action row) ---------- */
+.rec-row {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 13px 15px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.rec-row + .rec-row {
+  margin-top: 10px;
+}
+.rec-row:hover {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+}
+.rec-row.clickable {
+  cursor: pointer;
+}
+.rec-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+
+/* ---------- Directory row (establishments) ---------- */
+.dir-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) 140px 110px 120px 130px 130px 90px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-faint);
+  background: var(--surface);
+  transition: background var(--transition);
+}
+.dir-row:hover {
+  background: var(--surface-sunken);
+}
+.dir-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.dir-name .n {
+  font-weight: 650;
+  color: var(--ink);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dir-name .t {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  margin-top: 1px;
+}
+.dir-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.dir-score .bar-track {
+  width: 42px;
+}
+.dir-sub {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+.dir-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--red-ink);
+  text-transform: uppercase;
+}
+.dir-flag .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+/* ---------- Attention rail (dashboard) ---------- */
+.attention-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color var(--transition), background var(--transition);
+}
+.attention-item:hover {
+  background: var(--surface-2);
+}
+.attention-item--red { border-left-color: var(--red); }
+.attention-item--amber { border-left-color: var(--amber); }
+.attention-item--green { border-left-color: var(--green); }
+.attention-item--blue { border-left-color: var(--blue); }
+.att-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  color: var(--ink-3);
+}
+.att-icon .ico {
+  width: 15px;
+  height: 15px;
+}
+.att-main {
+  flex: 1;
+  min-width: 0;
+}
+.att-label {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.att-sub {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 1px;
+}
+
+/* ---------- Chip rows / inline labels ---------- */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.mini-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 11px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+.mini-chip .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.mini-chip--red { color: var(--red-ink); border-color: var(--red-line); background: var(--red-bg); }
+.mini-chip--amber { color: var(--amber-ink); border-color: var(--amber-line); background: var(--amber-bg); }
+.mini-chip--green { color: var(--green-ink); border-color: var(--green-line); background: var(--green-bg); }
+.mini-chip--blue { color: var(--blue-ink); border-color: var(--blue-line); background: var(--blue-bg); }
+
+/* ---------- Stat clusters ---------- */
+.cluster-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.cluster-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ---------- Services ---------- */
+.attach-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin-right: 2px;
+}
+.attach-label .ico {
+  width: 13px;
+  height: 13px;
+}
+.mini-head {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.dv-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--border-faint);
+  border-radius: 7px;
+  background: var(--surface-2);
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.dv-comment {
+  flex-basis: 100%;
+  font-size: 11.5px;
+  color: var(--ink-3);
+  font-style: italic;
+}
+.dv-date {
+  font-weight: 650;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat--graphite::after { background: var(--accent); }
+.stat--violet::after { background: var(--violet); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1240px) {
+  .risk-readout { grid-template-columns: repeat(3, 1fr); }
+  .cluster-6 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 980px) {
+  .dir-row {
+    grid-template-columns: minmax(0, 2fr) 1fr 1fr;
+  }
+  .dir-row .dir-md-hide {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .risk-readout { grid-template-columns: repeat(2, 1fr); }
+  .cluster-6 { grid-template-columns: repeat(2, 1fr); }
+  .factor-bar { grid-template-columns: 110px 1fr 38px; }
+}
+@media (max-width: 480px) {
+  .risk-readout { grid-template-columns: 1fr 1fr; }
+  .cluster-4 { grid-template-columns: repeat(2, 1fr); }
+}

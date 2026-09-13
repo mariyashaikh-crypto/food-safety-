@@ -1,0 +1,87 @@
+FRONTEND RULES — FOOD SAFETY INSPECTION SYSTEM
+
+1.  FRONTEND ONLY
+
+-   Work ONLY inside the frontend code.
+-   Do NOT modify, rewrite, delete, rename, migrate, or restructure
+    backend files.
+-   Do NOT change API routes, request/response schemas, authentication
+    logic, database models, ML/risk logic, or backend configuration.
+-   Treat the existing backend as a finished API contract.
+-   If an API integration appears incorrect, adapt the frontend to the
+    existing API instead of changing the backend.
+
+2.  PROJECT PURPOSE This is a professional food-safety inspection and
+    risk-monitoring platform. The system supports:
+
+-   Establishment management
+-   Inspection history
+-   Violations and severity tracking
+-   Corrective-action evidence submission/review
+-   Re-inspections
+-   Current risk scoring
+-   ML-based high-risk prediction
+-   Smart inspection prioritization
+-   Grounded AI-style explanations based on stored establishment data
+
+3.  DESIGN DIRECTION
+
+-   Professional enterprise/public-sector inspection software.
+-   Gray-based visual theme.
+-   Light overall background; content must remain the visual focus.
+-   Use subtle transparency/glass effects only where useful.
+-   Avoid a dark-heavy background.
+-   Avoid blue as the dominant brand color.
+-   Use restrained neutral tones: white, off-white, light gray,
+    charcoal, slate, and carefully used status colors.
+-   Status colors may be used semantically for HIGH/URGENT, MEDIUM, LOW,
+    success, warning, and errors.
+-   Avoid excessive gradients, glowing effects, neon colors, oversized
+    illustrations, and generic AI-dashboard styling.
+-   The interface should look human-designed, trustworthy, clean, and
+    professional.
+
+4.  UX RULES
+
+-   Desktop-first but responsive.
+-   Clear information hierarchy.
+-   Navigation must be obvious.
+-   Important risk information should be visible without overwhelming
+    the user.
+-   Tables, cards, badges, timelines, and panels should have consistent
+    spacing.
+-   Use progressive disclosure for detailed inspection/violation
+    information.
+-   Do not overload screens with every API field at once.
+-   Use expandable sections/drawers/modals for secondary details.
+-   Always show loading, empty, error, and success states where
+    relevant.
+-   Preserve authentication/session behavior already provided by the
+    backend.
+
+5.  DATA INTEGRITY
+
+-   Display real API data.
+-   Do not invent fake statistics when an API value is available.
+-   Do not silently alter risk scores or ML predictions.
+-   Clearly distinguish: Current Risk, ML Prediction, Inspection
+    Priority, Violations, Corrective Actions, and Re-inspection results.
+-   Preserve backend terminology such as HIGH, LOW, URGENT, Resolved,
+    Corrective Action Required, Accepted, Rejected, Submitted, Pending,
+    and Fixed.
+
+6.  FRONTEND QUALITY
+
+-   Reusable components.
+-   Centralized API service layer.
+-   Clean route structure.
+-   Consistent typography and spacing.
+-   Accessible buttons, forms, tables, dialogs, and navigation.
+-   Avoid duplicated UI code.
+-   Keep the code maintainable and easy to extend.
+
+7.  IMPORTANT Before changing anything, inspect the existing frontend
+    structure and identify the framework, entry points, routes, API
+    service code, and existing components. Do not replace the whole
+    project blindly. Do not create a second frontend application. Do not
+    touch the backend.

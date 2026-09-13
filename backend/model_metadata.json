@@ -1,0 +1,22 @@
+{
+    "model": "RandomForestClassifier",
+    "n_estimators": 300,
+    "target": "next_inspection_high_risk",
+    "training_rows": 400,
+    "testing_rows": 100,
+    "accuracy": 0.71,
+    "roc_auc": 0.7302,
+    "features": [
+        "total_violations",
+        "critical_violations",
+        "high_severity_violations",
+        "medium_severity_violations",
+        "low_severity_violations",
+        "recurring_categories",
+        "unresolved_violations",
+        "rejected_corrective_actions",
+        "days_since_last_inspection",
+        "establishment_type",
+        "region"
+    ]
+}

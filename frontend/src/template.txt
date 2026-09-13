@@ -1,0 +1,64 @@
+FRONTEND PAGE TEMPLATE — FOOD SAFETY INSPECTION SYSTEM
+
+Use this as the common visual/page structure. Adapt it to the existing
+frontend framework.
+
+GLOBAL SHELL - Fixed/consistent sidebar or top navigation. -
+Professional gray neutral palette. - Light page background. - White or
+slightly transparent content surfaces. - Compact header with page title,
+context, and user/session controls. - Consistent content max-width and
+spacing.
+
+DASHBOARD 1. Header - “Food Safety Inspection System” - Short contextual
+subtitle 2. KPI row - Total Establishments - High-Risk Establishments -
+Pending Corrective Actions - Upcoming/Required Inspections 3. Risk
+overview - High/Medium/Low distribution - Small, readable visualization
+4. Priority section - Highest-priority establishments - Risk score - ML
+prediction - Priority - Recommendation 5. Recent activity - Recent
+inspections - Recent corrective-action updates 6. Quick actions - View
+establishments - View inspections - View violations - Review corrective
+actions
+
+ESTABLISHMENTS PAGE - Search - Filters: risk level, establishment type,
+region/status - Professional data table/cards - Columns: Name, Type,
+Region, Risk Score, Risk Level, Last Inspection, Status, Action - Row
+click opens establishment details.
+
+ESTABLISHMENT DETAILS 1. Establishment identity - Name - Type -
+Address - Region - Active/Open status 2. Risk summary - Current risk
+score + level - ML probability + predicted level - Priority score +
+level - Recommendation 3. Risk factors - Total violations - Critical
+violations - High severity violations - Unresolved violations -
+Recurring categories - Days since last inspection 4. Inspection history
+timeline/table 5. Violations section - Category - Severity -
+Description - Status - Evidence - Corrective action 6. Corrective
+actions - Status badge - Evidence - Inspector comment 7.
+Re-inspections - Date - Inspector - Result - Notes 8. Smart decision /
+explanation - Why the establishment is high/medium/low risk - Why
+inspection is or is not urgent
+
+INSPECTIONS PAGE - Inspection list/table - Date - Establishment -
+Inspector - Status - Risk score - View details
+
+VIOLATIONS PAGE - Search/filter - Severity badges - Status badges -
+Establishment and inspection references - Expandable violation details -
+Corrective-action state
+
+CORRECTIVE ACTIONS PAGE - Pending/submitted/accepted/rejected views -
+Evidence upload UI where supported by the existing backend - Inspector
+comment - Status history - Re-inspection requirement
+
+AI / SMART EXPLANATION VIEW - Question input - Answer panel - Grounded
+indicator - Source/context label - Model label only when supplied by
+API - Keep the presentation professional; do not make it look like a
+generic chatbot.
+
+DETAIL DRAWER / MODAL Use for secondary information instead of
+navigating away when appropriate. - Clear title - Summary - Full
+details - Evidence - Timeline/history - Close action
+
+VISUAL LANGUAGE - Gray/charcoal primary UI. - Light background. -
+White/light-gray cards. - Thin borders. - Moderate corner radius. -
+Subtle shadows. - Strong typography hierarchy. - Status colors used only
+to communicate status/risk. - No giant hero graphics. - No unnecessary
+decorative AI imagery.
