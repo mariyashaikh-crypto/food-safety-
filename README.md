@@ -1,1245 +1,530 @@
-Food Safety Intelligence Platform
-
-An AI-powered Food Safety Inspection and Risk Management Platform that helps food safety teams manage establishments, inspections, violations, corrective actions, evidence, re-inspections, risk prediction, and inspection prioritization through one connected workflow.
-
-Overview
-
-The platform combines rule-based risk analysis, machine learning, local Generative AI, RAG, evidence management, and operational dashboards.
+# Intelligent Food Safety Inspection & Risk Management Platform
 
-Its goal is to transform food safety inspection from a reactive manual process into a data-driven, risk-based, explainable, and AI-assisted workflow.
+A local AI-powered platform for managing food safety establishments, inspections, violations, corrective actions, evidence, risk prediction, inspection prioritization, dashboards, and AI-assisted analysis.
 
-Core Workflow
+> Problem Statement: Intelligent Food Safety Inspection & Risk Management Platform
+> Deployment: Local / Offline-capable prototype
+> External APIs / Paid Services: Not required
 
-Establishment Added
-        |
-        v
-Historical Data Recorded
-        |
-        v
-Risk Prediction
-        |
-        v
-Inspection Priority Generated
-        |
-        v
-Inspector Assigned
-        |
-        v
-Inspection Conducted
-        |
-        v
-Violations Recorded
-        |
-        v
-Evidence Uploaded
-        |
-        v
-Corrective Action Required
-        |
-        v
-Corrective Evidence Submitted
-        |
-        v
-Inspector Review
-        |
-        +------ Rejected ------> Corrective Action Resubmitted
-        |
-        v
-Corrective Action Accepted
-        |
-        v
-Re-inspection
-        |
-        +------ Issue Remains ------> Further Action
-        |
-        v
-Violation Resolved
-        |
-        v
-Risk Recalculated
-        |
-        v
-Dashboard Updated
-        |
-        v
-Grounded GenAI Explanation
+## Overview
 
-Key Capabilities
+The platform connects the complete food-safety inspection workflow:
 
-1. Establishment Management
+**Establishment → Historical Data → Risk Analysis → ML Prediction → Inspection Priority → Inspection → Violation → Corrective Action → Evidence → Re-inspection → Resolution → Dashboard + AI Assistant**
 
-Manage food establishments with:
+The system combines traditional rule-based risk analysis with machine learning and local GenAI to support inspectors and administrators.
 
-Establishment name
+## Key Features
 
-Establishment type
+### Establishment Management
 
-Address
+- Register and manage establishments
+- Store establishment type, address, region, and operating status
+- View inspection history and current risk status
+- Search and filter establishments
 
-Region
+### Inspection Management
 
-Operating status
+Supports the inspection lifecycle:
 
-Current risk status
+**Scheduled → In Progress → Submitted → Reviewed → Corrective Action Required → Resolved**
 
-Risk score
+Inspectors can schedule inspections, record inspection details, assign inspectors, and track inspection status.
 
-Last inspection date
+### Violation Management
 
-Inspection history
+Supports major food-safety violation categories:
 
-Supported establishment types can include:
+- Improper food storage
+- Temperature control
+- Poor sanitation
+- Pest control
+- Cross-contamination
+- Expired food
+- Unsafe food handling
+- Facility hygiene
 
-Restaurants
+Each violation stores its category, severity, description, evidence, corrective action, and status.
 
-Food Trucks
+### Corrective Actions
 
-Cafeterias
+Complete workflow:
 
-Hotels
+**Violation Detected → Corrective Action Required → Submitted → Inspector Review → Accepted / Rejected → Re-inspection → Closed**
 
-Institutional Kitchens
+### Evidence Management
 
-Other food service establishments
+Evidence can be uploaded for violations and corrective actions.
 
-2. Inspection Management
+Supported formats:
 
-Manage the complete inspection lifecycle.
+- JPG
+- JPEG
+- PNG
+- WEBP
+- PDF
 
-Scheduled
-    |
-    v
-In Progress
-    |
-    v
-Submitted
-    |
-    v
-Reviewed
-    |
-    v
-Corrective Action Required
-    |
-    v
-Resolved
+Evidence files are stored locally while their references are maintained in the database.
 
-Each inspection can contain:
+## Risk Intelligence
 
-Establishment
+The system analyzes:
 
-Inspection date
+- Previous violation count
+- Critical violations
+- High/medium/low severity
+- Recurring violations
+- Unresolved violations
+- Rejected corrective actions
+- Days since last inspection
+- Establishment type
+- Region
 
-Inspector
+It provides:
 
-Status
+- Current risk score
+- Current risk level
+- ML risk probability
+- Predicted risk level
+- Contributing factors
+- Risk rationale
 
-Notes
+## ML-Based Risk Prediction
 
-Inspection risk score
+The platform uses a **Random Forest** model for predictive risk analysis.
 
-Associated violations
+Random Forest is suitable because our data is structured/tabular inspection data containing multiple interacting factors.
 
-The platform also supports historical inspection records, upcoming inspections, overdue inspections, and re-inspections.
+### ML Pipeline
 
-3. Violation Management
+**Historical Inspection Data → Feature Engineering → Preprocessing → Random Forest → Risk Probability → Predicted Risk Level**
 
-The platform supports major food safety violation categories including:
-
-Improper Food Storage
-
-Temperature Control
-
-Poor Sanitation
-
-Pest Activity
-
-Cross-Contamination
-
-Expired Food
-
-Unsafe Food Handling
-
-Facility Hygiene
-
-Each violation contains:
-
-Category
-
-Severity
-
-Description
-
-Evidence
-
-Corrective action
-
-Resolution status
-
-Associated inspection
-
-Associated establishment
-
-Severity levels:
-
-Critical
-High
-Medium
-Low
-
-Complete Application Workflow
-
-The application connects every stage of the food safety process:
-
-Establishment
-     |
-     v
-Historical Inspection Data
-     |
-     v
-Risk Assessment
-     |
-     v
-ML Risk Prediction
-     |
-     v
-Smart Inspection Priority
-     |
-     v
-Inspection
-     |
-     v
-Violation Detection
-     |
-     v
-Evidence
-     |
-     v
-Corrective Action
-     |
-     v
-Inspector Review
-     |
-     +------ Rejected ------+
-     |                      |
-     |                      v
-     |               Evidence Resubmission
-     |                      |
-     +----------------------+
-     |
-     v
-Accepted
-     |
-     v
-Re-inspection
-     |
-     v
-Resolution
-     |
-     v
-Risk Recalculation
-     |
-     v
-Dashboard
-     |
-     v
-Grounded AI Explanation
-
-System Architecture
-
-                    +----------------------+
-                    |     React Frontend   |
-                    | Vite + TypeScript    |
-                    +----------+-----------+
-                               |
-                               | REST API
-                               v
-                    +----------------------+
-                    |       FastAPI        |
-                    |     Backend API      |
-                    +----------+-----------+
-                               |
-             +-----------------+------------------+
-             |                 |                  |
-             v                 v                  v
-      +-------------+   +-------------+   +-------------+
-      |   SQLite    |   | Risk Engine |   | Dashboard   |
-      |  Database   |   |  + ML Model |   |   Engine    |
-      +-------------+   +------+------+   +-------------+
-                               |
-                               v
-                       +---------------+
-                       | Priority /    |
-                       | Decision      |
-                       | Engine        |
-                       +-------+-------+
-                               |
-                               v
-                       +---------------+
-                       | RAG Retrieval |
-                       | System Data   |
-                       +-------+-------+
-                               |
-                               v
-                       +---------------+
-                       | Ollama        |
-                       | Qwen 2.5 3B   |
-                       +-------+-------+
-                               |
-                               v
-                       +---------------+
-                       | Grounded AI   |
-                       | Assistant     |
-                       +---------------+
-
-AI and ML Architecture
-
-The platform uses multiple AI/ML layers with separate responsibilities.
-
-Historical Inspection Data
-          |
-          v
-Feature Engineering
-          |
-          v
-Data Preprocessing
-          |
-          v
-Machine Learning Model
-          |
-          v
-Risk Probability
-          |
-          v
-Predicted Risk Level
-          |
-          v
-Smart Inspection Priority
-          |
-          v
-Inspector Decision Support
-
-The responsibilities are intentionally separated:
-
-ML Model
-   |
-   +--> Predicts risk
-
-Risk Engine
-   |
-   +--> Calculates current risk
-
-Smart Decision Engine
-   |
-   +--> Prioritizes inspections
-
-GenAI + RAG
-   |
-   +--> Explains system information
-
-The language model is not treated as the official risk-scoring authority.
-
-Risk Scoring
-
-The platform calculates establishment risk using historical and operational factors.
-
-Important factors include:
-
-Total previous violations
-
-Critical violations
-
-High-severity violations
-
-Medium-severity violations
-
-Low-severity violations
-
-Recurring violation categories
-
-Unresolved violations
-
-Rejected corrective actions
-
-Days since last inspection
-
-Establishment type
-
-Region
-
-The system produces:
-
-Risk Score
-Risk Level
-Risk Factors
-Historical Context
-Reasons
-
-Example
-
-Establishment:
-Demo Fresh Bites 01
-
-Current Risk Score:
-100
-
-Current Risk Level:
-HIGH
-
-Historical Violations:
-12
-
-Critical Violations:
-2
-
-High-Severity Violations:
-6
-
-Unresolved Violations:
-3
-
-Recurring Categories:
-3
-
-Rejected Corrective Actions:
-2
-
-Days Since Last Inspection:
-95
-
-Machine Learning Risk Prediction
-
-The machine learning layer provides an additional predictive risk signal.
-
-Example feature set:
-
-total_violations
-critical_violations
-high_severity_violations
-medium_severity_violations
-low_severity_violations
-recurring_categories
-unresolved_violations
-rejected_corrective_actions
-days_since_last_inspection
-establishment_type
-region
-
-Pipeline:
-
-Historical Inspection Data
-        |
-        v
-Feature Engineering
-        |
-        v
-Preprocessing
-        |
-        v
-ML Model
-        |
-        v
-Risk Probability
-        |
-        v
-Predicted Risk Level
-
-Implementation uses:
-
-Pandas
-
-NumPy
-
-Scikit-learn
-
-Joblib
-
-The model can provide:
-
-Risk probability
-
-Predicted risk level
-
-Input features
-
-Top contributing features
-
-Example
-
-Demo Fresh Bites 01
-
-ML Risk Probability:
-83.17%
-
-Predicted Risk Level:
-HIGH
-
-Smart Inspection Prioritization
-
-Risk prediction alone is not enough to determine which establishment should be inspected first.
-
-The Smart Decision Engine combines:
-
-Current risk
-
-ML prediction
-
-Critical/high severity
-
-Recurring violations
-
-Unresolved violations
-
-Rejected corrective actions
-
-Inspection recency
-
-Current Risk
-     +
-ML Prediction
-     +
-Severity
-     +
-Recurrence
-     +
-Unresolved Issues
-     +
-Inspection Recency
-     |
-     v
-Priority Score
-     |
-     v
-Priority Level
-     |
-     v
-Inspection Recommendation
-
-Priority levels:
-
-URGENT
-HIGH
-MEDIUM
-LOW
+Example features:
+
+- `total_violations`
+- `critical_violations`
+- `high_severity_violations`
+- `medium_severity_violations`
+- `low_severity_violations`
+- `recurring_categories`
+- `unresolved_violations`
+- `rejected_corrective_actions`
+- `days_since_last_inspection`
+- `establishment_type`
+- `region`
 
 Example:
 
-Establishment:
-Demo Fresh Bites 01
+**Demo Fresh Bites 01 → 83.17% predicted high-risk probability**
 
-Priority Score:
-100
-
-Priority:
-URGENT
+The ML prediction is kept separate from the operational risk score:
 
-Recommendation:
-Inspect immediately
+- **Operational Risk Engine:** calculates current risk using defined inspection factors.
+- **Random Forest:** learns historical patterns and provides predictive probability.
 
-Inspection Lifecycle
+## Smart Inspection Prioritization
 
-The platform supports a complete inspection lifecycle:
+The priority engine considers:
 
-Scheduled
-    |
-    v
-In Progress
-    |
-    v
-Submitted
-    |
-    v
-Reviewed
-    |
-    v
-Corrective Action Required
-    |
-    v
-Resolved
+- Current risk
+- ML prediction
+- Severity
+- Recurrence
+- Unresolved issues
+- Inspection recency
 
-The system maintains relationships between:
+Flow:
 
-Establishment
-    |
-    +--- Inspection
-            |
-            +--- Violations
-                    |
-                    +--- Corrective Actions
-                            |
-                            +--- Re-inspection
+Current Risk + ML Prediction + Severity + Recurrence + Unresolved Issues + Inspection Recency → Priority Score → URGENT / HIGH / MEDIUM / LOW
 
-This makes it possible to trace an issue from its original inspection through evidence, corrective action, review, re-inspection, and final resolution.
+This helps inspectors identify which establishments require earlier attention.
 
-Violation Management
+## Local GenAI Assistant
 
-Violations are directly linked to establishments and inspections.
+The platform uses:
 
-Example:
+- Ollama
+- Qwen 2.5 3B
+- Retrieval-Augmented Generation (RAG)
 
-Category:
-Temperature Control
+The model runs locally, so no paid external AI API or API key is required.
 
-Severity:
-High
+### RAG Workflow
 
-Description:
-Food storage temperature was outside the recommended safe range.
+**User Question → Retrieve Relevant Database Records → Build Grounded Context → Qwen 2.5 3B → Data-backed Answer**
 
-Corrective Action:
-Correct the temperature control issue and submit supporting evidence.
+Example question:
 
-Status:
-Resolved
+> Why is Demo Fresh Bites 01 high risk?
 
-Violation records support:
+The system retrieves relevant information such as:
 
-Severity tracking
+- Current risk score
+- Previous violations
+- Critical violations
+- Recurring categories
+- Unresolved violations
+- Inspection history
+- Corrective-action information
 
-Recurrence analysis
+The retrieved records are provided as context to Qwen so the response is grounded in the platform's data.
 
-Corrective action tracking
+Example questions:
 
-Evidence attachment
+- Why is Demo Fresh Bites 01 high risk?
+- What corrective actions are still pending?
+- Which establishments require attention?
+- Why should this establishment be inspected?
+- What violations are recurring?
 
-Resolution tracking
+The GenAI assistant explains system information and does not replace the official risk calculation or inspector decision.
 
-Re-inspection
+## Dashboard & Analytics
 
-Corrective Action Workflow
+The dashboard provides:
 
-Violation Detected
-        |
-        v
-Corrective Action Required
-        |
-        v
-Evidence Submitted
-        |
-        v
-Inspector Review
-        |
-        +----------+
-        |          |
-        v          v
-    Accepted    Rejected
-        |          |
-        v          v
- Re-inspection  Resubmission
-        |          |
-        +----------+
-        |
-        v
-Resolved
+- Total establishments
+- High / medium / low risk distribution
+- Upcoming inspections
+- Overdue inspections
+- Active violations
+- Critical violations
+- Recurring violation categories
+- Inspector workload
+- Compliance trends
+- Regional distribution
+- Risk intelligence
+- Inspection priority distribution
+- Recent inspections
 
-Each corrective action can contain:
+## Authentication & Security
 
-Action description
+The application uses JWT authentication and Role-Based Access Control.
 
-Supporting evidence
+### Authentication Flow
 
-Status
+User Login → React sends credentials → FastAPI verifies credentials → Password hash verification → JWT token generated → Frontend sends token with protected requests → Backend validates token and role → Authorized operation
 
-Inspector comment
+Passwords are stored as hashes rather than plain text.
 
-Related violation
+Supported roles include:
 
-Supported states include:
+- Admin
+- Inspector
+- Establishment
 
-Required
-Submitted
-Accepted
-Rejected
+Protected endpoints verify the user's role before restricted operations are performed.
 
-Evidence Management
+## Database
 
-The platform supports evidence submission for violations and corrective actions.
+The backend uses:
 
-Supported file types:
+**SQLite + SQLAlchemy ORM**
 
-JPG
-JPEG
-PNG
-WEBP
-PDF
+Main entities:
 
-Evidence can be associated with:
+- User
+- Establishment
+- Inspection
+- Violation
+- CorrectiveAction
+- Reinspection
 
-Violations
+Main relationship:
 
-Corrective actions
+**Establishment → Inspection → Violation → Corrective Action → Re-inspection**
 
-Example evidence:
+SQLite was selected because it is lightweight, persistent, and suitable for a local prototype. The SQLAlchemy-based architecture allows migration to PostgreSQL later.
 
-temperature_log.jpg
-storage_area.jpg
-sanitation_report.pdf
-corrective_action_evidence.jpg
+## System Architecture
 
-Evidence is stored locally and accessed through authenticated backend routes.
+**React Frontend → FastAPI REST API → SQLite + SQLAlchemy**
 
-The system does not require external cloud storage for evidence.
+The intelligence layer consists of:
 
-Dashboard and Analytics
+**FastAPI → Risk Engine → Random Forest → Priority Engine**
 
-The dashboard provides a centralized operational view.
+and:
 
-Key metrics include:
+**FastAPI → RAG → Ollama → Qwen 2.5 3B**
 
-Total establishments
+### Architecture Components
 
-Risk distribution
+#### Frontend
 
-High-risk establishments
+React + Vite + TypeScript provides the user interface for administrators and inspectors.
 
-Upcoming inspections
+#### Backend
 
-Overdue inspections
+FastAPI handles:
 
-Active violations
+- Authentication
+- REST APIs
+- Validation
+- Business logic
+- Inspection workflows
+- Violation management
+- Corrective actions
+- Evidence management
+- Risk and ML services
+- AI assistant requests
 
-Critical violations
+#### Database
 
-Recurring violation categories
+SQLite stores persistent application data through SQLAlchemy ORM.
 
-Inspector workload
+#### Risk & ML Layer
 
-Compliance trends
+The risk engine calculates operational risk while the Random Forest model provides predictive risk probability.
 
-Geographic distribution of high-risk establishments
+#### GenAI Layer
 
-The dashboard helps answer:
+The RAG engine retrieves relevant records and provides grounded context to Qwen 2.5 3B running locally through Ollama.
 
-What is happening?
-Where is the risk?
-Which establishments need attention?
-Which violations are recurring?
-Which inspections are overdue?
-How is compliance changing?
+## Complete Workflow
 
-GenAI and RAG
+**Establishment Registered → Historical Data Stored → Current Risk Calculated → Random Forest Predicts Risk → Priority Engine Calculates Priority → Inspection Scheduled → Inspector Performs Inspection → Violations Recorded → Evidence Uploaded → Corrective Action Submitted → Inspector Reviews → Accepted / Rejected → Re-inspection → Fixed / Not Fixed → Risk Information Updated → Dashboard Updated → GenAI Explains Relevant Records**
 
-The platform includes a locally hosted Generative AI assistant.
+## Hybrid Intelligence
 
-Technology:
+Different components have different responsibilities:
 
-Ollama
-   +
-Qwen 2.5 3B
-   +
-RAG
+| Component | Responsibility |
+|---|---|
+| Rule-Based Risk Engine | Current operational risk |
+| Random Forest | Predictive risk probability |
+| Priority Engine | Inspection priority |
+| RAG + Qwen | Natural-language explanation |
 
-The assistant retrieves relevant application records before generating an answer.
+This keeps the system transparent while adding predictive ML and local GenAI capabilities.
 
-Architecture:
+## Evidence Workflow
 
-User Question
-      |
-      v
-Question Analysis
-      |
-      v
-Relevant System Records Retrieved
-      |
-      v
-Grounded Context Built
-      |
-      v
-Ollama
-      |
-      v
-Qwen 2.5 3B
-      |
-      v
-Grounded Response
+**Inspection → Violation Detected → Evidence Uploaded → Corrective Action Submitted → Inspector Review → Accepted / Rejected → Re-inspection → Fixed / Not Fixed → Violation Resolved or Remains Open**
 
-The assistant can retrieve:
+## Technology Stack
 
-Establishment information
+### Frontend
 
-Inspection history
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- Recharts
+- React Router
+- Lucide
 
-Violations
+### Backend
 
-Severity
+- Python
+- FastAPI
+- REST APIs
+- SQLAlchemy
+- Pydantic
 
-Corrective actions
+### Database
 
-Re-inspection results
+- SQLite
+- SQLAlchemy ORM
 
-Risk information
+### Authentication
 
-Inspection priority
+- JWT
+- Password hashing
+- Role-Based Access Control
 
-Example Query
+### Machine Learning
 
-Why is Demo Fresh Bites 01 high risk and why should it be inspected immediately?
+- Pandas
+- NumPy
+- Scikit-learn
+- Random Forest
+- Joblib
 
-Relevant information can include:
+### GenAI
 
-Current Risk:
-HIGH
+- Ollama
+- Qwen 2.5 3B
+- Retrieval-Augmented Generation
 
-Risk Score:
-100
+### Evidence
 
-Total Violations:
-12
+- FastAPI file uploads
+- Local evidence storage
+- Image/PDF validation
 
-Critical Violations:
-2
+## Project Structure
 
-Unresolved Violations:
-3
+    food-safety-platform/
+    │
+    ├── backend/
+    │   ├── main.py
+    │   ├── database.py
+    │   ├── models.py
+    │   ├── schemas.py
+    │   ├── auth.py
+    │   ├── risk_engine.py
+    │   ├── priority_engine.py
+    │   ├── dashboard_engine.py
+    │   ├── ml_risk_engine.py
+    │   ├── smart_decision_engine.py
+    │   ├── rag_engine.py
+    │   ├── ai_engine.py
+    │   ├── train_risk_model.py
+    │   ├── generate_ml_dataset.py
+    │   ├── seed_demo_data.py
+    │   └── requirements.txt
+    │
+    ├── frontend/
+    │   ├── src/
+    │   │   ├── pages/
+    │   │   ├── components/
+    │   │   ├── api/
+    │   │   ├── auth/
+    │   │   ├── context/
+    │   │   ├── hooks/
+    │   │   └── styles/
+    │   └── package.json
+    │
+    ├── .gitignore
+    ├── start.bat
+    └── README.md
 
-Recurring Categories:
-Temperature Control
-Expired Food
-Improper Food Storage
+## Local Setup
 
-Days Since Last Inspection:
-95
+### Prerequisites
 
-The assistant can then provide a grounded explanation for the recommendation.
+- Python 3.11+
+- Conda
+- Node.js
+- npm
+- Git
+- Ollama
 
-The API response can identify whether the generated answer was successfully grounded.
+### Clone Repository
 
-Local AI Architecture
+    git clone https://github.com/mariyashaikh-crypto/food-safety-.git
+    cd food-safety-
 
-The AI stack can run locally:
+### Backend Setup
 
-Application
-     |
-     v
-FastAPI
-     |
-     v
-RAG Retrieval
-     |
-     v
-Ollama
-     |
-     v
-Qwen 2.5 3B
-
-Advantages:
-
-Local inference
-
-Data privacy
-
-Offline-capable AI architecture
-
-No per-request cloud AI charges
-
-No external AI API key
-
-Greater control over application data
-
-Authentication and RBAC
-
-The backend implements JWT-based authentication.
-
-Login
-  |
-  v
-Credentials Verified
-  |
-  v
-JWT Token Generated
-  |
-  v
-Authenticated API Requests
-
-Example roles:
-
-Admin
-Inspector
-Establishment
-
-Role-based permissions can protect:
-
-Establishment management
-
-Inspection management
-
-Violation management
-
-Corrective actions
-
-Evidence submission
-
-Re-inspection
-
-AI assistant access
-
-Technology Stack
-
-Frontend
-
-React
-
-TypeScript
-
-Vite
-
-Tailwind CSS
-
-Recharts
-
-React Router
-
-Lucide Icons
-
-Backend
-
-Python
-
-FastAPI
-
-SQLAlchemy
-
-Pydantic
-
-REST APIs
-
-Database
-
-SQLite
-
-SQLAlchemy ORM
-
-Machine Learning
-
-Pandas
-
-NumPy
-
-Scikit-learn
-
-Joblib
-
-Generative AI
-
-Ollama
-
-Qwen 2.5 3B
-
-Retrieval-Augmented Generation
-
-Local inference
-
-Security
-
-JWT Authentication
-
-Role-Based Access Control
-
-Password hashing
-
-Authenticated evidence access
-
-Evidence
-
-FastAPI multipart uploads
-
-Local evidence storage
-
-Image/PDF support
-
-Project Structure
-
-food-safety-platform/
-│
-├── backend/
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── auth.py
-│   │
-│   ├── risk_engine.py
-│   ├── ml_risk_engine.py
-│   ├── priority_engine.py
-│   ├── smart_decision_engine.py
-│   ├── dashboard_engine.py
-│   │
-│   ├── ai_engine.py
-│   ├── rag_engine.py
-│   │
-│   ├── generate_ml_dataset.py
-│   ├── train_risk_model.py
-│   ├── test_ml_risk.py
-│   ├── seed_demo_data.py
-│   ├── create_admin.py
-│   │
-│   ├── model_metadata.json
-│   ├── requirements.txt
-│   └── backend-start.bat
-│
-├── frontend/
-│   ├── src/
-│   │   ├── api/
-│   │   ├── auth/
-│   │   ├── components/
-│   │   ├── context/
-│   │   ├── hooks/
-│   │   ├── layout/
-│   │   ├── pages/
-│   │   ├── styles/
-│   │   ├── utils/
-│   │   ├── App.tsx
-│   │   └── main.tsx
-│   │
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── vite.config.ts
-│   └── tsconfig.json
-│
-├── .gitignore
-├── start.bat
-└── README.md
-
-Prerequisites
-
-Required
-
-Windows 10/11
-
-Git
-
-Anaconda or Miniconda
-
-Python 3.11+
-
-Node.js 18+
-
-npm
-
-Optional for GenAI
-
-Ollama
-
-Qwen 2.5 3B model
-
-Installation
-
-Clone the repository:
-
-git clone https://github.com/mariyashaikh-crypto/food-safety-.git
-cd food-safety-
-
-Backend Setup
-
-Create the Conda environment:
-
-conda create -n foodsafety python=3.11
-
-Activate it:
-
-conda activate foodsafety
-
-Navigate to the backend:
-
-cd backend
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Start the API:
-
-uvicorn main:app --reload
+    conda create -n foodsafety python=3.11
+    conda activate foodsafety
+    cd backend
+    pip install -r requirements.txt
+    uvicorn main:app --reload
 
 Backend:
 
-http://127.0.0.1:8000
+    http://127.0.0.1:8000
+
+Swagger API documentation:
 
-Swagger documentation:
+    http://127.0.0.1:8000/docs
 
-http://127.0.0.1:8000/docs
+### Frontend Setup
 
-Database
+Open another terminal:
 
-The application uses SQLite for local development and demonstration.
+    cd frontend
+    npm install
+    npm run dev
 
-The database stores:
+### Ollama Setup
 
-Users
+    ollama pull qwen2.5:3b
+    ollama serve
 
-Establishments
+Ollama runs locally at:
 
-Inspections
+    http://localhost:11434
 
-Violations
+## API Areas
 
-Corrective actions
+- `/auth`
+- `/establishments`
+- `/inspections`
+- `/violations`
+- `/corrective-actions`
+- `/reinspections`
+- `/risk`
+- `/ml-risk`
+- `/priority`
+- `/dashboard`
+- `/ai`
+- `/evidence`
 
-Re-inspections
+## Data
 
-The database is generated locally and is excluded from version control.
+The application uses realistic synthetic inspection data designed around the problem statement.
 
-Demo Data
+The data represents:
 
-The project includes scripts for generating demonstration data.
+- Establishments
+- Inspection history
+- Violations
+- Severity
+- Recurrence
+- Corrective actions
+- Re-inspections
+- Risk information
+- Regional information
 
-python seed_demo_data.py
+This avoids using confidential government or business records while still allowing the complete application workflow to be demonstrated.
 
-The demo data can contain establishments with different:
+Runtime files such as the SQLite database, uploaded evidence, trained model artifacts, and generated ML datasets are excluded from Git where appropriate through `.gitignore`.
 
-Risk levels
+## Backend Data Flow
 
-Violation histories
+**User Action → React Request → FastAPI → Validation + Business Logic → SQLAlchemy → SQLite → Risk / ML / Priority Logic → JSON Response → React UI Update**
 
-Severity levels
+The application therefore uses backend APIs and persistent database operations rather than relying only on hardcoded frontend values.
 
-Recurring violations
+## Demo Highlights
 
-Corrective-action states
+- Secure login
+- JWT authentication
+- Role-based access control
+- Establishment registration
+- Establishment directory
+- Inspection scheduling
+- Inspection records
+- Violation tracking
+- Corrective-action workflow
+- Evidence upload and review
+- Re-inspection workflow
+- Risk intelligence
+- Random Forest risk prediction
+- ML probability
+- Smart inspection prioritization
+- Dashboard analytics
+- Local RAG-based GenAI
+- Qwen 2.5 3B through Ollama
+- Evidence-backed resolution tracking
 
-Inspection dates
+## Future Scope
 
-Re-inspection results
+- PostgreSQL production deployment
+- Geospatial risk heatmaps
+- Automatic inspection scheduling
+- Inspector workload balancing
+- OCR for inspection documents
+- Computer-vision-based hygiene analysis
+- Advanced notifications
+- Automated reports
+- Larger authorized real-world datasets
+- Model monitoring and retraining
+- Multilingual AI assistance
+- Cloud deployment where permitted
 
-This allows the dashboard, risk engines, and AI assistant to demonstrate realistic decision-support scenarios.
+## Project Objective
 
-Machine Learning Setup
+The objective is to provide one intelligent platform that moves food safety teams from:
 
-Generate training data:
+**Inspection Data → Risk Intelligence → ML Prediction → Inspection Priority → Violation Tracking → Corrective Action → Evidence Review → Re-inspection → Resolution**
 
-python generate_ml_dataset.py
+while using machine learning for predictive risk analysis and local GenAI for grounded explanations from the system's actual records.
 
-Train the risk model:
+## License
 
-python train_risk_model.py
-
-Test the ML risk engine:
-
-python test_ml_risk.py
-
-Model metadata is stored in:
-
-backend/model_metadata.json
-
-Generated model/data artifacts can be kept local and excluded from Git where appropriate.
-
-Frontend Setup
-
-From the project root:
-
-cd frontend
-npm install
-npm run dev
-
-Open the Vite development URL displayed in the terminal.
-
-GenAI Setup
-
-Install Ollama, then pull the local model:
-
-ollama pull qwen2.5:3b
-
-The application uses the local Ollama service for GenAI.
-
-No external AI API key is required.
-
-Example Decision
-
-For an establishment such as Demo Fresh Bites 01, the platform can identify:
-
-12 total violations
-2 critical violations
-6 high-severity violations
-3 unresolved violations
-3 recurring categories
-2 rejected corrective actions
-95 days since last inspection
-
-The system can produce:
-
-Current Risk:
-HIGH
-
-Risk Score:
-100
-
-ML Risk Probability:
-83.17%
-
-ML Risk Level:
-HIGH
-
-Priority:
-URGENT
-
-Recommendation:
-Inspect immediately
-
-The GenAI assistant can then explain the decision using the underlying system records.
-
-Security and Data Handling
-
-The platform follows a local-first architecture for demonstration and development.
-
-Authentication protects sensitive API operations
-
-JWT tokens are used for authenticated requests
-
-RBAC controls role-specific operations
-
-Evidence access is authenticated
-
-Uploaded filenames are handled safely
-
-Evidence file types and sizes are validated
-
-SQLite data remains local
-
-GenAI processing can remain local through Ollama
-
-Design Principles
-
-The project is built around:
-
-Risk-based inspection — prioritize establishments that require attention.
-
-Explainability — provide reasons behind risk and inspection decisions.
-
-Human-in-the-loop decisions — AI supports inspectors rather than replacing them.
-
-Evidence-based compliance — corrective actions are supported by submitted evidence.
-
-Traceability — connect establishments, inspections, violations, actions, and re-inspections.
-
-Local-first AI — use local inference instead of requiring paid external AI APIs.
-
-Separation of responsibilities — risk scoring, ML prediction, prioritization, and GenAI explanation have distinct roles.
-
-Future Scope
-
-Potential extensions include:
-
-Geospatial risk heatmaps
-
-Automatic inspection scheduling
-
-Inspector workload balancing
-
-OCR-based document extraction
-
-Image-based hygiene analysis
-
-Automated inspection report generation
-
-Notifications and reminders
-
-What-if risk simulations
-
-Advanced predictive models
-
-Integration with external food safety or regulatory systems
-
-Project Goal
-
-The Food Safety Intelligence Platform aims to help inspection teams move from simply recording violations to predicting risk, prioritizing inspections, tracking corrective actions, verifying resolution, and explaining decisions with grounded AI.
-
-Predict risk. Prioritize inspections. Track corrective actions. Verify compliance. Explain decisions.
+This project was developed as a hackathon/prototype solution for demonstrating an intelligent food safety inspection and risk management workflow.
